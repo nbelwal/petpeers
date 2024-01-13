@@ -28,7 +28,7 @@ public class PetServiceImpl implements PetService{
 	private final UserRepo userRepo;
  
 	@Override
-	@Transactional()
+	@Transactional
 	public List<PetDto> getAllPets() {
 		List<PetDto> petDtoList = new ArrayList<>();
 		List<Pet> pets = petRepo.findAll();
@@ -43,9 +43,6 @@ public class PetServiceImpl implements PetService{
  
 		User user = userRepo.findById(Long.valueOf(userId))
 				.orElseThrow(() -> new ResourceNotFoundException(ConstMessages.RESOURCE_NOT_FOUND,userId.toString()));
-
- 
-//		logger.info("pets : " + user.getPets().toString());
  
 		user.getPets().forEach(pet -> petDtoList.add(petToPetDto(pet)));
 		return petDtoList;

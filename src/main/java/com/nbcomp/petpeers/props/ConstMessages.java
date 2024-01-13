@@ -2,6 +2,11 @@ package com.nbcomp.petpeers.props;
 
 public final class ConstMessages {
 	
+	
+	private ConstMessages() {
+		
+	}
+
 	//UserDto validaiton messages
 	public static final String BLANK_USER_NAME = "user name can't be blank";
 	public static final String BLANK_USER_PASSWORD = "user password can't be blank";

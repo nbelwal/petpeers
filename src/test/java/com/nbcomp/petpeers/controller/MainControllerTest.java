@@ -19,7 +19,7 @@ import com.nbcomp.petpeers.service.PetService;
 import com.nbcomp.petpeers.service.UserService;
 
 @WebMvcTest(MainController.class)
-public class MainControllerTest {
+class MainControllerTest {
 	@MockBean
 	private PetService petService;
 
@@ -30,7 +30,7 @@ public class MainControllerTest {
 	private MockMvc mockMvc;
 
 	@Test
-	public void savePetTest() throws Exception {
+	void savePetTest() throws Exception {
 		//creating a object
 		PetDto petDto = PetDto.builder().petAge(12).petName("cd").petPlace("lakimpur").build();
 		//creating a saved object by giving it id
@@ -49,13 +49,13 @@ public class MainControllerTest {
 		//getting object from response json
 		PetDto pd = new ObjectMapper().readValue(r.getContentAsString(), PetDto.class);
 	
-		assertEquals(pd.getPetId(), 1l);
+		assertEquals(1l,pd.getPetId());
 	}
 	
 	//exceptional handling method below
 	
 	@Test
-	public void savePetAgeValidaionTest() throws Exception {
+	void savePetAgeValidaionTest() throws Exception {
 		PetDto petDto = PetDto.builder().petAge(-1).petName("cd").petPlace("lakimpur").build();
 		
 		ObjectMapper mapper = new ObjectMapper();

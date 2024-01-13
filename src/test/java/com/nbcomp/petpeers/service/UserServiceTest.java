@@ -17,7 +17,7 @@ import com.nbcomp.petpeers.exception.PasswordMismatchException;
 import com.nbcomp.petpeers.repository.UserRepo;
 
 @ExtendWith(MockitoExtension.class)
-public class UserServiceTest {
+class UserServiceTest {
 	@Mock
 	private UserRepo userRepo;
 
@@ -25,7 +25,7 @@ public class UserServiceTest {
 	private UserServiceImpl userService;
 
 	@Test
-	public void saveUser() {
+	void saveUser() {
 		UserDto userDto = UserDto.builder().userName("neeraj").userPassword("1234").confirmPassword("1234").build();
 		User user = new User();
 		BeanUtils.copyProperties(userDto, user);
@@ -38,7 +38,7 @@ public class UserServiceTest {
 	}
 
 	@Test
-	public void saveUserNeg() {
+	void saveUserNeg() {
 		UserDto userDto = UserDto.builder().userId(1l).userName("neeraj").userPassword("123").confirmPassword("1234")
 				.build();
 		assertThrows(PasswordMismatchException.class, () -> userService.saveUser(userDto));
@@ -47,7 +47,7 @@ public class UserServiceTest {
 	//private method testing
 	
 	@Test
-	public void userToUserDto() {
+	void userToUserDto() {
 		User user = User.builder().userId(1l).build();
 		UserDto userDto = userService.userToUserDto(user);
 		assertEquals(user.getUserId(), userDto.getUserId());
